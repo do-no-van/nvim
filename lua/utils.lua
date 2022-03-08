@@ -1,0 +1,87 @@
+local api = vim.api
+local diagnostic = vim.diagnostic
+local cmd = vim.cmd
+local lsp = vim.lsp
+
+
+local modes = {
+    ["normal_visual"] = "",
+    ["normal"] = "n",
+    ["insert"] = "i",
+    ["visual"] = "v",
+    ["terminal"] = "t",
+}
+
+function map(all_bindings, options)
+    local default_options = { noremap = true }
+    if options then
+        vim.tbl_extend("keep", options, default_options)
+    else
+        options = default_options
+    end
+
+    for mode, bindings in pairs(all_bindings) do
+        for key, binding in pairs(bindings) do
+            api.nvim_set_keymap(modes[mode], key, binding, options)
+        end
+    end
+end
+
+
+function diagnostic_or_hover()
+    local buf, _ = diagnostic.open_float(nil, { focus = false })
+    if not buf then
+        lsp.buf.hover()
+    end
+end
+
+
+local function open_term_win()
+    local height = api.nvim_get_option("lines")
+    cmd(math.floor(height * 2 / 5) .. "split")
+end
+
+local terminal_buf = -1
+local terminal_win = -1
+function toggle_term()
+    if terminal_buf == -1 then
+        open_term_win()
+        cmd("terminal!")
+        cmd("startinsert")
+
+        terminal_buf = api.nvim_get_current_buf()
+        terminal_win = api.nvim_get_current_win()
+    elseif api.nvim_get_current_win() == terminal_win then
+        api.nvim_win_close(terminal_win, false)
+        terminal_win = -1
+    else
+        if terminal_win == -1 or not api.nvim_win_is_valid(terminal_win) then
+            open_term_win()
+            terminal_win = api.nvim_get_current_win()
+
+            if api.nvim_buf_is_valid(terminal_buf) then
+                api.nvim_set_current_buf(terminal_buf)
+            else
+                cmd("terminal!")
+                cmd("startinsert")
+            end
+        end
+
+        api.nvim_set_current_win(terminal_win)
+        cmd("startinsert")
+    end
+end
+
+local function silent_write()
+    cmd("silent write")
+end
+
+function autosave()
+    silent_write()
+
+    api.nvim_create_autocmd("TextChanged,TextChangedI", {
+        pattern = "<buffer>",
+        callback = silent_write,
+    })
+end
+
