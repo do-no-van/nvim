@@ -123,6 +123,11 @@ _G.packer_plugins = {
     path = "/home/do-no-van/.local/share/nvim/site/pack/packer/start/fidget.nvim",
     url = "https://github.com/j-hui/fidget.nvim"
   },
+  ["filetype.nvim"] = {
+    loaded = true,
+    path = "/home/do-no-van/.local/share/nvim/site/pack/packer/start/filetype.nvim",
+    url = "https://github.com/nathom/filetype.nvim"
+  },
   ["gitsigns.nvim"] = {
     loaded = true,
     path = "/home/do-no-van/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",

@@ -3,6 +3,7 @@ local diagnostic = vim.diagnostic
 local cmd = vim.cmd
 local lsp = vim.lsp
 
+local M = {}
 
 local modes = {
     ["normal_visual"] = "",
@@ -12,7 +13,7 @@ local modes = {
     ["terminal"] = "t",
 }
 
-function map(all_bindings, options)
+M.map = function(all_bindings, options)
     local default_options = { noremap = true }
     if options then
         vim.tbl_extend("keep", options, default_options)
@@ -28,7 +29,7 @@ function map(all_bindings, options)
 end
 
 
-function diagnostic_or_hover()
+M.diagnostic_or_hover = function()
     local buf, _ = diagnostic.open_float(nil, { focus = false })
     if not buf then
         lsp.buf.hover()
@@ -43,7 +44,7 @@ end
 
 local terminal_buf = -1
 local terminal_win = -1
-function toggle_term()
+M.toggle_term = function()
     if terminal_buf == -1 then
         open_term_win()
         cmd("terminal!")
@@ -76,7 +77,7 @@ local function silent_write()
     cmd("silent write")
 end
 
-function autosave()
+M.autosave = function()
     silent_write()
 
     api.nvim_create_autocmd("TextChanged,TextChangedI", {
@@ -84,4 +85,6 @@ function autosave()
         callback = silent_write,
     })
 end
+
+return M
 

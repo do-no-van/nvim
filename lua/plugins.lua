@@ -17,6 +17,7 @@ require("packer").startup{function()
             "nvim-treesitter/nvim-treesitter",
             run = ":TSUpdate",
         }
+        use "nathom/filetype.nvim"
         use "jiangmiao/auto-pairs"
         use "tpope/vim-commentary"
         use "tpope/vim-surround"

@@ -3,8 +3,7 @@ local opt = vim.opt
 local win_opt = vim.wo
 local global = vim.g
 
-local cmd = vim.cmd
-local fn = vim.fn
+local utils = require("utils")
 
 -- Misc
 global.mapleader = " "
@@ -65,11 +64,11 @@ local autosave_files = {
     "Cargo.toml",
 }
 
-function check_autosave()
+local function check_autosave()
     local current_file = api.nvim_buf_get_name(0)
     for _, file in ipairs(autosave_files) do
         if string.match(current_file, file.."$") then
-            autosave()
+            utils.autosave()
             break
         end
     end

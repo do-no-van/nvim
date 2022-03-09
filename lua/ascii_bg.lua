@@ -183,7 +183,7 @@ local ascii = {
     "type  :help<Enter>            for help",
 }
 
-function reset_start_screen()
+local function reset_start_screen()
     cmd("enew")
     local buf = api.nvim_get_current_buf()
     local win = api.nvim_get_current_win()
@@ -192,6 +192,8 @@ function reset_start_screen()
     api.nvim_buf_set_option(buf, "buflisted", true)
     api.nvim_buf_set_option(buf, "buflisted", true)
     api.nvim_win_set_option(win, "colorcolumn", "80,100")
+    api.nvim_win_set_option(win, "relativenumber", true)
+    api.nvim_win_set_option(win, "number", true)
     api.nvim_win_set_option(win, "list", true)
 end
 
@@ -224,6 +226,8 @@ M["set_ascii_bg"] = function()
         api.nvim_buf_set_option(buf, "buftype", "nofile")
         api.nvim_buf_set_option(buf, "swapfile", false)
         api.nvim_win_set_option(win, "colorcolumn", "")
+        api.nvim_win_set_option(win, "relativenumber", false)
+        api.nvim_win_set_option(win, "number", false)
         api.nvim_win_set_option(win, "list", false)
         api.nvim_set_current_buf(buf)
 
