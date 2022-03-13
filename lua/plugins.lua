@@ -45,7 +45,7 @@ require("packer").startup{function()
             run = "make",
         }
 
-        -- Lsp + completion + debugging
+        -- Lsp + auto-completion
         use "j-hui/fidget.nvim"
         use "neovim/nvim-lspconfig"
         use "onsails/lspkind-nvim"
