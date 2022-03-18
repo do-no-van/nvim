@@ -46,6 +46,7 @@ require("lualine").setup{
     options = {
         component_separators = { left = "│", right = ''},
         section_separators = { left = "", right = ''},
+        globalstatus = true,
     },
 }
 
@@ -148,6 +149,12 @@ require("rust-tools").setup{
         capabilities = capabilities,
         settings = {
             ["rust-analyzer"] = {
+                cargo = {
+                    runBuildScripts = true,
+                },
+                procMacro = {
+                    enable = true,
+                },
                 checkOnSave = {
                     command = "clippy",
                 },

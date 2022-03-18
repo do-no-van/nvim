@@ -50,6 +50,8 @@ api.nvim_create_autocmd("TextYankPost", {
     callback = function() vim.highlight.on_yank{timeout = 200} end,
 })
 
+opt.laststatus = 3
+
 
 -- Indentation
 local indent = 4
