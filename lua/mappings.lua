@@ -48,8 +48,8 @@ require("utils").map{
         ["<Leader>g"] = "<Cmd>Telescope live_grep<CR>",
         ["<C-t>"] = "<Cmd>lua require('utils').toggle_term()<CR>",
         ["<C-\\>"] = "<Cmd>lua vim.o.cursorcolumn = not vim.o.cursorcolumn<CR>",
-        ["<Leader>s"] = "<Cmd>split<CR>",
-        ["<Leader>v"] = "<Cmd>vsplit<CR>",
+        ["<Leader>s"] = "<Cmd>split<CR><Cmd>wincmd j<CR>",
+        ["<Leader>v"] = "<Cmd>vsplit<CR><Cmd>wincmd l<CR>",
     },
     visual = {
         ["jk"] = "<Esc>",
