@@ -31,7 +31,7 @@ onedark.setup{
     },
 }
 
--- equivalent of cmd("colorscheme onedark")
+-- Equivalent of cmd("colorscheme onedark")
 onedark.load()
 
 
@@ -65,8 +65,8 @@ require("colorizer").setup(
 )
 
 
--- local telescope = require("telescope")
-require("telescope").setup{
+local telescope = require("telescope")
+telescope.setup{
     defaults = {
         mappings = {
             ["n"] = {
@@ -81,7 +81,7 @@ require("telescope").setup{
     }
 }
 
-require("telescope").load_extension("fzf")
+telescope.load_extension("fzf")
 
 
 require("nvim-treesitter.configs").setup{
@@ -129,7 +129,6 @@ require("lspconfig").sumneko_lua.setup {
                 },
             },
             workspace = {
-                --       comment
                 library = api.nvim_get_runtime_file("", true),
             },
             telemetry = {

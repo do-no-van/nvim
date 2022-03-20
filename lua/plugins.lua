@@ -31,9 +31,7 @@ require("packer").startup{function()
         use "navarasu/onedark.nvim"
         use {
             "kyazdani42/nvim-web-devicons",
-            config = function()
-                require("nvim-web-devicons").setup{}
-            end,
+            config = function() require("nvim-web-devicons").setup{} end,
         }
         use "nvim-lualine/lualine.nvim"
         use "lukas-reineke/indent-blankline.nvim"
@@ -64,9 +62,7 @@ require("packer").startup{function()
         use {
             "saecki/crates.nvim",
             event = { "BufRead Cargo.toml" },
-            config = function()
-                require("crates").setup()
-            end,
+            config = function() require("crates").setup() end,
         }
     end,
     config = {
