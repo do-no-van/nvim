@@ -86,5 +86,7 @@ M.autosave = function()
     })
 end
 
+api.nvim_add_user_command("Autosave", "lua require('utils').autosave()", {})
+
 return M
 
