@@ -11,7 +11,6 @@ global.mapleader = " "
 opt.mouse = "a"
 
 opt.completeopt = "menuone,noinsert"
-opt.splitbelow = true
 
 opt.signcolumn = "yes"
 
