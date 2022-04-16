@@ -84,7 +84,21 @@ telescope.setup{
 telescope.load_extension("fzf")
 
 
+-- WebGPU shading language support
+api.nvim_create_autocmd("BufRead,BufNewFile", {
+    pattern = "*.wgsl",
+    callback = function() vim.bo.filetype = "wgsl" end,
+})
+
+require("nvim-treesitter.parsers").get_parser_configs().wgsl = {
+    install_info = {
+        url = "https://github.com/szebniok/tree-sitter-wgsl",
+        files = { "src/parser.c" },
+    },
+}
+
 require("nvim-treesitter.configs").setup{
+    ensure_installed = { "rust", "lua", "wgsl", "c", "cpp" },
     highlight = {
         enable = true,
     },
