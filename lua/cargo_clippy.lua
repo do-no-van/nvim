@@ -112,9 +112,9 @@ M.clippy = function(show_errors)
 end
 
 -- Editor commands for convenience
-api.nvim_add_user_command("Clippy", "lua require('cargo_clippy').clippy()", {})
-api.nvim_add_user_command("ClippyErr", "lua require('cargo_clippy').clippy(true)", {})
-api.nvim_add_user_command("ClippyClear", "lua require('cargo_clippy').clear()", {})
+api.nvim_create_user_command("Clippy", "lua require('cargo_clippy').clippy()", {})
+api.nvim_create_user_command("ClippyErr", "lua require('cargo_clippy').clippy(true)", {})
+api.nvim_create_user_command("ClippyClear", "lua require('cargo_clippy').clear()", {})
 
 return M
 
