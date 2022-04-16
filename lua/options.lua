@@ -48,7 +48,7 @@ win_opt.number = true
 win_opt.relativenumber = true
 
 api.nvim_create_autocmd("TextYankPost", {
-    callback = function() vim.highlight.on_yank{timeout = 200} end,
+    callback = function() vim.highlight.on_yank{ timeout = 200 } end,
 })
 
 opt.laststatus = 3
@@ -63,8 +63,8 @@ opt.shiftwidth = indent
 
 -- Auto-saving
 local autosave_files = {
-    "(.*).rs",
-    "Cargo.toml",
+    -- "(.*).rs",
+    -- "Cargo.toml",
 }
 
 local function check_autosave()
