@@ -1,11 +1,12 @@
 local api = vim.api
+local keymap = vim.keymap
 local diagnostic = vim.diagnostic
 local cmd = vim.cmd
 local lsp = vim.lsp
 
 local M = {}
 
-local modes = {
+local modes_short = {
     ["normal_visual"] = "",
     ["normal"] = "n",
     ["insert"] = "i",
@@ -13,17 +14,17 @@ local modes = {
     ["terminal"] = "t",
 }
 
-M.map = function(all_bindings, options)
-    local default_options = { noremap = true }
-    if options then
-        vim.tbl_extend("keep", options, default_options)
-    else
-        options = default_options
-    end
-
+M.map = function(all_bindings)
     for mode, bindings in pairs(all_bindings) do
         for key, binding in pairs(bindings) do
-            api.nvim_set_keymap(modes[mode], key, binding, options)
+            local options = { noremap = true }
+
+            if type(binding) == "table" then
+                vim.tbl_extend("force", options, binding[2])
+                binding = binding[1]
+            end
+
+            keymap.set(modes_short[mode], key, binding, options)
         end
     end
 end
