@@ -122,7 +122,13 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
-require("lspconfig").sumneko_lua.setup {
+local lspconfig = require("lspconfig")
+
+lspconfig.clangd.setup{
+    capabilities = capabilities,
+}
+
+lspconfig.sumneko_lua.setup {
     capabilities = capabilities,
     settings = {
         Lua = {
