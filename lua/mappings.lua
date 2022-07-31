@@ -31,8 +31,6 @@ require("utils").map{
         ["<Leader>F"] = lsp.buf.formatting,
 
         -- Editor bindings
-        ["<Leader>l"] = require("cargo_clippy").clippy,
-        ["<Leader>L"] = require("cargo_clippy").clear,
         ["<C-s>"] = require("utils").autosave,
         ["gd"] = lsp.buf.definition,
         ["gt"] = lsp.buf.type_definition,
