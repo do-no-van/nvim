@@ -1,5 +1,6 @@
 local lsp = vim.lsp
 
+-- Escape mappings are done in plugin_configs.lua
 require("utils").map{
     normal_visual = {
         ["H"] = "^",
@@ -13,7 +14,6 @@ require("utils").map{
         ["<C-l>"] = "<Cmd>wincmd l<CR>",
     },
     insert = {
-        ["jk"] = "<Esc>l",
         ["<S-Tab>"] = "<C-d>",
         ["<C-c>"] = '"+y',
         ["<C-h>"] = "<Cmd>wincmd h<CR>",
@@ -54,12 +54,10 @@ require("utils").map{
         ["<Leader>v"] = "<Cmd>vsplit<CR><Cmd>wincmd l<CR>",
     },
     visual = {
-        ["jk"] = "<Esc>",
         ["<"] = "<gv",
         [">"] = ">gv",
     },
     terminal = {
-        ["jk"] = "<C-\\><C-n>",
         ["<C-t>"] = require("utils").toggle_term,
         ["<C-h>"] = "<Cmd>wincmd h<CR>",
         ["<C-j>"] = "<Cmd>wincmd j<CR>",

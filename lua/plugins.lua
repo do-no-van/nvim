@@ -24,6 +24,7 @@ require("packer").startup{function()
         use "nvim-lua/popup.nvim"
         use "nvim-lua/plenary.nvim"
         use "lewis6991/gitsigns.nvim"
+        use "max397574/better-escape.nvim"
 
         -- Aesthetics
         use "romainl/vim-cool"

@@ -2,6 +2,21 @@ local api = vim.api
 local fn = vim.fn
 local lsp = vim.lsp
 
+local esc_per_mode = {
+    ["i"] = "<Esc>l",
+    ["v"] = "<Esc>",
+    ["t"] = "<C-\\><C-n>",
+}
+
+require("better_escape").setup{
+    mapping = { "jk" },
+    clear_empty_lines = true,
+    keys = function()
+        return esc_per_mode[api.nvim_get_mode()["mode"]]
+    end,
+}
+
+
 require("gitsigns").setup{
     signs = {
         add = { text = ' +' },
@@ -11,6 +26,7 @@ require("gitsigns").setup{
         changedelete = { text = ' ~' },
     },
 }
+
 
 local cursor_pos_bg = "#252525"
 
