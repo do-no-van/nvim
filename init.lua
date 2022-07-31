@@ -11,8 +11,3 @@ require("plugin_configs")
 if fn.argc() == 0 or fn.line2byte("$") ~= -1 and not opt.insertmode then
     require("ascii_bg").set_ascii_bg()
 end
-
-if fn.expand("%:e") == "rs" then
-    require("cargo_clippy")
-end
-
