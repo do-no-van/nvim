@@ -199,9 +199,11 @@ require("rust-tools").setup{
     },
 }
 
-require("luasnip.loaders.from_snipmate").lazy_load()
-
 local luasnip = require("luasnip")
+luasnip.config.set_config {
+    updateevents = "TextChanged,TextChangedI",
+}
+
 local cmp = require("cmp")
 cmp.setup{
     formatting = {
@@ -211,14 +213,20 @@ cmp.setup{
         },
     },
     mapping = {
-        ["<A-k>"] = cmp.mapping.select_prev_item(),
-        ["<A-j>"] = cmp.mapping.select_next_item(),
-        ["<C-a>"] = cmp.mapping.abort(),
-        -- ["<Tab>"] = cmp.mapping.complete(),
-        ["<Tab>"] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Insert,
-            select = true,
-        }),
+        ["<A-k>"] = cmp.mapping.select_prev_item{ behavior = cmp.SelectBehavior.Select },
+        ["<A-j>"] = cmp.mapping.select_next_item{ behavior = cmp.SelectBehavior.Select },
+        ["<Tab>"] = cmp.mapping(function(fallback)
+            if cmp.visible() then
+                cmp.confirm {
+                    behavior = cmp.ConfirmBehavior.Insert,
+                    select = true,
+                }
+            elseif luasnip.expand_or_locally_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
     },
     snippet = {
         expand = function(args)
@@ -228,8 +236,8 @@ cmp.setup{
     sources = {
         { name = "path" },
         { name = "nvim_lsp" },
-        { name = "luasnip" },
         { name = "buffer" },
+        { name = "luasnip" },
         { name = "nvim_lsp_signature_help" },
     },
 }
