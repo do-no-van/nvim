@@ -1,7 +1,8 @@
 local lsp = vim.lsp
+local utils = require("utils")
 
 -- Escape mappings are done in lua/plugin_configs.lua
-require("utils").map{
+utils.map{
     normal_visual = {
         ["H"] = "^",
         ["J"] = "<C-f>",
@@ -20,7 +21,7 @@ require("utils").map{
         ["<C-j>"] = "<Cmd>wincmd j<CR>",
         ["<C-k>"] = "<Cmd>wincmd k<CR>",
         ["<C-l>"] = "<Cmd>wincmd l<CR>",
-        ["<C-t>"] = require("utils").toggle_term,
+        ["<C-t>"] = utils.toggle_term,
     },
     normal = {
         -- Editing bindings
@@ -31,10 +32,10 @@ require("utils").map{
         ["<Leader>F"] = lsp.buf.formatting,
 
         -- Editor bindings
-        ["<C-s>"] = require("utils").autosave,
+        ["<C-s>"] = utils.autosave,
         ["gd"] = lsp.buf.definition,
         ["gt"] = lsp.buf.type_definition,
-        ["gh"] = require("utils").diagnostic_or_hover,
+        ["gh"] = utils.diagnostic_or_hover,
         ["gE"] = vim.diagnostic.goto_prev,
         ["ge"] = vim.diagnostic.goto_next,
         ["<Leader>,"] = "<Cmd>tabprevious<CR>",
@@ -46,7 +47,7 @@ require("utils").map{
         ["<Leader>e"] = "<Cmd>x!<CR>",
         ["<Leader>f"] = "<Cmd>Telescope find_files<CR>",
         ["<Leader>g"] = "<Cmd>Telescope live_grep<CR>",
-        ["<C-t>"] = require("utils").toggle_term,
+        ["<C-t>"] = utils.toggle_term,
         ["<C-\\>"] = "<Cmd>lua vim.o.cursorcolumn = not vim.o.cursorcolumn<CR>",
         ["<Leader>s"] = "<Cmd>split<CR><Cmd>wincmd j<CR>",
         ["<Leader>v"] = "<Cmd>vsplit<CR><Cmd>wincmd l<CR>",
@@ -56,7 +57,7 @@ require("utils").map{
         [">"] = ">gv",
     },
     terminal = {
-        ["<C-t>"] = require("utils").toggle_term,
+        ["<C-t>"] = utils.toggle_term,
         ["<C-h>"] = "<Cmd>wincmd h<CR>",
         ["<C-j>"] = "<Cmd>wincmd j<CR>",
         ["<C-k>"] = "<Cmd>wincmd k<CR>",
