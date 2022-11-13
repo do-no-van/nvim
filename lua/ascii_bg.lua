@@ -239,4 +239,3 @@ M["set_ascii_bg"] = function()
 end
 
 return M
-

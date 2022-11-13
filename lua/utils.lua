@@ -90,4 +90,3 @@ end
 api.nvim_create_user_command("Autosave", "lua require('utils').autosave()", {})
 
 return M
-

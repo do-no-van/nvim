@@ -1,6 +1,6 @@
 local lsp = vim.lsp
 
--- Escape mappings are done in plugin_configs.lua
+-- Escape mappings are done in lua/plugin_configs.lua
 require("utils").map{
     normal_visual = {
         ["H"] = "^",
@@ -63,4 +63,3 @@ require("utils").map{
         ["<C-l>"] = "<Cmd>wincmd l<CR>",
     },
 }
-

@@ -58,6 +58,7 @@ require("indent_blankline").setup{
     },
 }
 
+
 require("lualine").setup{
     options = {
         component_separators = { left = "│", right = ''},
@@ -278,4 +279,3 @@ vim.diagnostic.config{
     severity_sort = true,
     update_in_insert = true,
 }
-

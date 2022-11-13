@@ -100,4 +100,3 @@
 (comment) @comment
 
 (ERROR) @error
-
