@@ -229,7 +229,6 @@ cmp.setup{
         { name = "path" },
         { name = "nvim_lsp" },
         { name = "luasnip" },
-        { name = "cmp_tabnine" },
         { name = "buffer" },
         { name = "nvim_lsp_signature_help" },
     },
@@ -240,14 +239,6 @@ api.nvim_create_autocmd("FileType", {
     pattern = "toml",
     callback = function() require("cmp").setup.buffer{ sources = {{ name = "crates" }}} end,
 })
-
-require("cmp_tabnine.config"):setup{
-    max_lines = 1024;
-    max_num_results = 5;
-    sort = true;
-    run_on_every_keystroke = true;
-    snippet_placeholder = '..';
-}
 
 -- Set borders for floating windows
 local orig_util_open_floating_preview = lsp.util.open_floating_preview
