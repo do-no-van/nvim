@@ -57,10 +57,6 @@ require("packer").startup{function()
         use "hrsh7th/cmp-nvim-lsp-signature-help"
         use "simrat39/rust-tools.nvim"
         use {
-            "tzachar/cmp-tabnine",
-            run = "./install.sh",
-        }
-        use {
             "saecki/crates.nvim",
             event = { "BufRead Cargo.toml" },
             config = function() require("crates").setup() end,
