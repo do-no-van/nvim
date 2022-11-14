@@ -30,10 +30,10 @@ M.map = function(all_bindings)
 end
 
 
-M.diagnostic_or_hover = function()
+M.diagnostic_or = function(callback) -- used for hover, callback because rust-tools provides an alternate to the lsp hover
     local buf, _ = diagnostic.open_float(nil, { focus = false })
     if not buf then
-        lsp.buf.hover()
+        callback()
     end
 end
 

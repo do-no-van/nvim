@@ -175,8 +175,13 @@ lspconfig.sumneko_lua.setup {
     },
 }
 
-require("rust-tools").setup{
+local rust_tools = require("rust-tools")
+local utils = require("utils")
+rust_tools.setup{
     tools = {
+        runnables = {
+            use_telescope = true,
+        },
         hover_actions = {
             auto_focus = true,
         },
@@ -196,6 +201,13 @@ require("rust-tools").setup{
                 },
             },
         },
+        on_attach = function(_, bufnr)
+            utils.map{
+                normal = {
+                    ["gh"] = { function() utils.diagnostic_or(rust_tools.hover_actions.hover_actions) end, { buffer = bufnr } },
+                },
+            }
+        end,
     },
 }
 
