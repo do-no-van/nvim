@@ -19,7 +19,10 @@ require("packer").startup{function()
         }
         use "nathom/filetype.nvim"
         use "jiangmiao/auto-pairs"
-        use "tpope/vim-commentary"
+        use {
+            "numToStr/Comment.nvim",
+            config = function() require("Comment").setup() end,
+        }
         use "tpope/vim-surround"
         use "nvim-lua/popup.nvim"
         use "nvim-lua/plenary.nvim"
