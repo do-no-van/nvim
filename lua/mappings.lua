@@ -29,7 +29,7 @@ utils.map{
         ["U"] = "<C-r>",
         ["<Leader>r"] = lsp.buf.rename,
         ["<Leader>a"] = lsp.buf.code_action,
-        ["<Leader>F"] = lsp.buf.formatting,
+        ["<Leader>F"] = function() lsp.buf.format{ async = true } end,
 
         -- Editor bindings
         ["<C-s>"] = utils.autosave,
