@@ -115,7 +115,7 @@ require("nvim-treesitter.parsers").get_parser_configs().wgsl = {
 }
 
 require("nvim-treesitter.configs").setup{
-    ensure_installed = { "rust", "lua", "wgsl", "c", "cpp" },
+    ensure_installed = { "rust", "toml", "lua", "wgsl", "c", "cpp" },
     highlight = {
         enable = true,
     },
