@@ -36,6 +36,7 @@ utils.map{
         ["gd"] = lsp.buf.definition,
         ["gt"] = lsp.buf.type_definition,
         ["gh"] = function() utils.diagnostic_or(lsp.buf.hover) end,
+        ["gH"] = lsp.buf.hover,
         ["gE"] = vim.diagnostic.goto_prev,
         ["ge"] = vim.diagnostic.goto_next,
         ["<Leader>,"] = "<Cmd>tabprevious<CR>",
