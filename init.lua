@@ -1,14 +1,18 @@
-local fn = vim.fn
-local opt = vim.opt
+-- bootstrap package manager
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
-require("utils")
 require("options")
 require("mappings")
-require("plugins")
-require("plugin_configs")
+require("lazy").setup("plugins", { ui = { border = "single", }})
 require("snippets")
-
--- Check if there were args (i.e. opened file), non-empty buffer, or started in insert mode
-if fn.argc() == 0 or fn.line2byte("$") ~= -1 and not opt.insertmode then
-    require("ascii_bg").set_ascii_bg()
-end

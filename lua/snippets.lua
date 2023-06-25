@@ -12,20 +12,20 @@ local sn = luasnip.snippet_node
 local rep = require("luasnip.extras").rep
 
 luasnip.add_snippets("rust", {
-    snippet("testmod", fmt([[
-        #[cfg(test)]
-        mod tests {{
-            use super::*;
+	snippet("testmod", fmt([[
+		#[cfg(test)]
+		mod tests {{
+			use super::*;
 
-            #[test]
-            fn {}() {{
-                {}
-            }}
-        }}
-        ]],
-        {
-            i(1),
-            i(0),
-        })
-    ),
+			#[test]
+			fn {}() {{
+				{}
+			}}
+		}}
+		]],
+		{
+			i(1),
+			i(0),
+		})
+	),
 })
