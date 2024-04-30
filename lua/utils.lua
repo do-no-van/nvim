@@ -14,13 +14,17 @@ local modes_short = {
 	["terminal"] = "t",
 }
 
-M.map = function(all_bindings)
+M.map = function(all_bindings, buffer)
 	for mode, bindings in pairs(all_bindings) do
 		for key, binding in pairs(bindings) do
 			local options = { noremap = true }
 
+			if buffer then
+				options.buffer = true
+			end
+
 			if type(binding) == "table" then
-				vim.tbl_extend("force", options, binding[2]) -- add options specified by the binding to `options`
+				vim.tbl_extend("force", options, binding[2])
 				binding = binding[1]
 			end
 

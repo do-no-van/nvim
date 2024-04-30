@@ -1,4 +1,5 @@
 local api = vim.api
+local cmd = vim.cmd
 local opt = vim.opt
 local win_opt = vim.wo
 local global = vim.g
@@ -6,32 +7,30 @@ local global = vim.g
 -- misc
 global.mapleader = " "
 
-opt.mouse = "a"
-
-opt.completeopt = "menuone,noinsert"
-
 opt.splitbelow = true;
 
 opt.signcolumn = "yes"
 
-opt.scrolloff = 4
+opt.scrolloff = 8
 
 opt.undofile = true
+
+opt.hlsearch = false
 
 opt.ignorecase = true
 opt.smartcase = true
 
 -- aesthetics
-global.asmsyntax = "nasm"
-
 opt.termguicolors = true
 
 opt.showmode = false
 
-win_opt.colorcolumn = "100,120"
+win_opt.colorcolumn = "80,100,120"
 opt.cursorline = true
 
-opt.background = "dark"
+opt.wrap = false
+
+cmd.colorscheme("kule")
 
 win_opt.list = true
 opt.listchars = {
@@ -44,7 +43,7 @@ win_opt.number = true
 win_opt.relativenumber = true
 
 api.nvim_create_autocmd("TextYankPost", {
-	callback = function() vim.highlight.on_yank({ timeout = 200 }) end,
+	callback = function() vim.highlight.on_yank({ timeout = 100 }) end,
 })
 
 opt.laststatus = 3

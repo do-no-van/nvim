@@ -1,4 +1,3 @@
-local lsp = vim.lsp
 local utils = require("utils")
 
 utils.map({
@@ -27,18 +26,9 @@ utils.map({
 		-- editing bindings
 		["<Leader>j"] = "J",
 		["U"] = "<C-r>",
-		["<Leader>r"] = lsp.buf.rename,
-		["<Leader>a"] = lsp.buf.code_action,
-		["<Leader>F"] = function() lsp.buf.format({ async = true }) end,
 
 		-- editor bindings
 		["<Leader>L"] = "<Cmd>Lazy<CR>",
-		["gd"] = lsp.buf.definition,
-		["gt"] = lsp.buf.type_definition,
-		["gh"] = function() utils.diagnostic_or(lsp.buf.hover) end,
-		["gH"] = lsp.buf.hover,
-		["gE"] = vim.diagnostic.goto_prev,
-		["ge"] = vim.diagnostic.goto_next,
 		["<Leader>,"] = "<Cmd>tabprevious<CR>",
 		["<Leader>."] = "<Cmd>tabnext<CR>",
 		["<Leader><"] = "<Cmd>tabmove -1<CR>",

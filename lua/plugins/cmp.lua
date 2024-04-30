@@ -1,34 +1,26 @@
 return {
 	{
-		"L3MON4D3/LuaSnip",
-		lazy = true,
-		config = function(_, _)
-			require("luasnip").config.set_config({
-				updateevents = "TextChanged,TextChangedI",
-			})
-		end,
-	},
-	{
 		"hrsh7th/nvim-cmp",
 		dependencies = {
-			"onsails/lspkind-nvim",
-			"hrsh7th/cmp-path",
+			"L3MON4D3/LuaSnip",
+
 			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-buffer",
-			"saadparwaiz1/cmp_luasnip",
 			"hrsh7th/cmp-nvim-lsp-signature-help",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
 		},
+
 		event = "InsertEnter",
-		config = function (_, _)
+		opts = function()
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 
-			cmp.setup({
-				formatting = {
-					format = require("lspkind").cmp_format({
-						mode = "symbol_text",
-						maxwidth = 50,
-					}),
+			return {
+				snippet = {
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
 				},
 				mapping = {
 					["<A-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
@@ -36,29 +28,69 @@ return {
 					["<Tab>"] = cmp.mapping(function(fallback)
 						if cmp.visible() then
 							cmp.confirm({
-								behavior = cmp.ConfirmBehavior.Insert,
+								behavior = cmp.ConfirmBehavior.Replace,
 								select = true,
 							})
-						elseif luasnip.expand_or_locally_jumpable() then
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if luasnip.expand_or_locally_jumpable() then
 							luasnip.expand_or_jump()
 						else
 							fallback()
 						end
 					end, { "i", "s" }),
 				},
-				snippet = {
-					expand = function(args)
-						luasnip.lsp_expand(args.body)
+				sources = {
+					{ name = "nvim_lsp" },
+					{ name = "nvim_lsp_signature_help" },
+					{ name = "luasnip" },
+					{ name = "buffer" },
+					{ name = "path" },
+				},
+				formatting = {
+					format = function(_, item)
+						local kind_icons = {
+							Text = "󰉿",
+							Method = "󰆧",
+							Function = "󰊕",
+							Constructor = "",
+							Field = "󰜢",
+							Variable = "󰀫",
+							Class = "󰠱",
+							Interface = "",
+							Module = "",
+							Property = "󰜢",
+							Unit = "󰑭",
+							Value = "󰎠",
+							Enum = "",
+							Keyword = "󰌋",
+							Snippet = "",
+							Color = "󰏘",
+							File = "󰈙",
+							Reference = "󰈇",
+							Folder = "󰉋",
+							EnumMember = "",
+							Constant = "󰏿",
+							Struct = "󰙅",
+							Event = "",
+							Operator = "󰆕",
+							TypeParameter = "",
+						}
+
+						if kind_icons[item.kind] then
+							item.kind = string.format("%s %s", kind_icons[item.kind], item.kind)
+						end
+
+						return item
 					end,
 				},
-				sources = {
-					{ name = "path" },
-					{ name = "nvim_lsp" },
-					{ name = "buffer" },
-					{ name = "luasnip" },
-					{ name = "nvim_lsp_signature_help" },
+				completion = {
+					completeopt = "menuone,noinsert"
 				},
-			})
+			}
 		end,
 	},
 }

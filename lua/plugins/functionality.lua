@@ -1,7 +1,16 @@
 return {
 	{
-		"kylechui/nvim-surround",
-		event = "VeryLazy",
+		"echasnovski/mini.comment",
+		keys = {
+			"gc",
+		},
+		config = true,
+	},
+	{
+		"echasnovski/mini.surround",
+		keys = {
+			"s",
+		},
 		config = true,
 	},
 	{
@@ -22,14 +31,8 @@ return {
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
-		config = true,
-	},
-	{
-		"romainl/vim-cool",
-	},
-	{
 		"lewis6991/gitsigns.nvim",
+		event = { "BufReadPost", "BufNewFile" },
 		opts = {
 			signs = {
 				add = { text = ' +' },

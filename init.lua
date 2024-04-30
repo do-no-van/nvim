@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 -- bootstrap package manager
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -15,4 +17,3 @@ vim.opt.rtp:prepend(lazypath)
 require("options")
 require("mappings")
 require("lazy").setup("plugins", { ui = { border = "single", }})
-require("snippets")
